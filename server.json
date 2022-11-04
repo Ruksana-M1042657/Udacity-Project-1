@@ -1,0 +1,40 @@
+{
+    "builders": [{
+      "type": "azure-arm",
+  
+      "client_id": "2a87df2e-44ef-4dab-bee4-277041ad8c27",
+      "client_secret": "vXF8Q~8t7z8OVwTsp5GsE8-ju11VaSbUAPKQfbJn",
+      "tenant_id": "191dd60d-090a-4459-a071-b03c80f3ac3b",
+      "subscription_id": "3cf73498-eacf-4cdb-bdeb-65f5c9dd2962",
+  
+      "managed_image_resource_group_name": "myPackerImages",
+      "managed_image_name": "myPackerImage",
+  
+      "os_type": "Linux",
+      "image_publisher": "Canonical",
+      "image_offer": "UbuntuServer",
+      "image_sku": "18.04-LTS",
+  
+      "azure_tags": {
+          "dept": "Engineering",
+          "task": "Image deployment"
+      },
+  
+      "location": "East US",
+      "vm_size": "Standard_DS2_v2"
+    }],
+    "provisioners": [{
+      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+      "inline": [
+		"echo 'Hello, World!' > index.html",
+			"nohup busybox httpd -f -p 80 &"
+        "apt-get update",
+        "apt-get upgrade -y",
+        "apt-get -y install nginx",
+  
+        "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
+      ],
+      "inline_shebang": "/bin/sh -x",
+      "type": "shell"
+    }]
+  }
