@@ -1,14 +1,15 @@
-# Azure Infrastructure Operations: Deploying a scalable IaaS web server in Azure
+Deploying a web server in Azure
 
 ## Introduction
-The goal of this project is to create infrastructure as code (IaC) in the form of a Terraform template as well as a Packer configuration to deploy a highly available website with a load balancer, as shown in the diagram below. The infrastructure is deployed into Azure in a customizable way based on specifications provided at build time, with an eye toward scaling the application for use in a CI/CD pipeline.
 
-Although we could use Azure App Service to achieve the same goal, we have adopted this approach in order to make the project suitable for use in an environment or organisation where the cost 
-of PaaS is a concern. Therefore, we have used only Azure IaaS so we can control cost. Since we expect the application be a popular service, it was deployed across multiple virtual machines.
+Your company's development team has created an application that they need deployed to Azure. The application is self-contained, but they need the infrastructure to deploy it in a customizable way based on specifications provided at build time, with an eye toward scaling the application for use in a CI/CD pipeline.
 
-To support this need and minimize future work, we employed Packer to create a server image, and Terraform to create a template for deploying a scalable cluster of servers with a load balancer to manage the incoming traffic. We have also adhered to security practices and ensured that our infrastructure is secure.
+Although we’d like to use Azure App Service, management has told us that the cost is too high for a PaaS like that and wants us to deploy it as pure IaaS so we can control cost. Since they expect this to be a popular service, it should be deployed across multiple virtual machines.
+
+To support this need and minimize future work, we will use Packer to create a server image, and Terraform to create a template for deploying a scalable cluster of servers—with a load balancer to manage the incoming traffic. We’ll also need to adhere to security practices and ensure that our infrastructure is secure.
 
 ### Main Steps
+
 The project consist of the following main steps:
 
 -   Creating a Packer template
