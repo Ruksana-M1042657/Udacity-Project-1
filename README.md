@@ -1,4 +1,4 @@
-#Deploying a web server in Azure
+# Deploying a web server in Azure
 
 ## Introduction
 
